@@ -1,0 +1,20 @@
+{
+  "name": "githubuser",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "EMichira <emmanuelmichira@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Emichira/gitHubUser",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
