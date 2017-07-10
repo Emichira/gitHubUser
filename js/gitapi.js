@@ -1,19 +1,32 @@
-function Calculator(skinName) {
-  this.skin = skinName;
-}
-Calculator.prototype.pingPong = function(goal) {
-  var output = [];
-  for (var i = 1; i <= goal; i++) {
-    if (i % 15 === 0) {
-      output.push("ping-pong");
-    } else if (i % 3 === 0) {
-      output.push("ping");
-    } else if (i % 5 === 0) {
-      output.push("pong");
-    } else  {
-      output.push(i);
-    }
-  }
-  return output;
-}
-       
+var apiKey = require('./../.env').apiKey;
+
+repository = function() {
+
+};
+
+findthem = function(){
+
+};
+
+repository.prototype.getrepository = function(name,displayFunction){
+  console.log(name);
+  $.get('https://api.github.com/users/' + name + '?access_token=' + apiKey).then(function(response){
+    displayFunction(response.name);
+    console.log(response);
+  }).fail(function(error) {
+    console.log('error');
+  });
+};
+
+findthem.prototype.getfindthem = function(repos,displayFunction){
+  console.log(repos);
+  $.get('https://api.github.com/users/' + repos + '/repos/?access_token=' + apiKey).then(function(response){
+    displayFunction(response.repos);
+    console.log(response);
+  }).fail(function(error) {
+    console.log('error');
+  });
+};
+
+exports.repositoryModule = repository;
+exports.findthemModule = findthem;
