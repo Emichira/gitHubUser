@@ -1,4 +1,4 @@
-#Github User Lookup
+# Github User Lookup #
 
 ####By Emmanuel Michira
 
