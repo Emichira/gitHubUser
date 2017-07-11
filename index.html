@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Basic page needs -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -8,15 +9,16 @@
     <title>Github User Lookup</title>
   </head>
   <body>
+    <!-- Home Page section -->
     <div class="container-fluid">
-      <div class="main row">
+      <div class="jumbotron main row">
         <h1>Github User Info</h1>
         <form id="apigit">
           <label for="text">Enter a github username:</label>
-          <input id="text" type="text">
-          <button type="submit" id="search">search</button>
-
+          <input id="text" type="text" placeholder="GitHub username">
+          <button class="btn btn-primary" type="submit" id="search">search</button>
         </form>
+        <!-- Results section -->
         <p id="showResults"></p>
       </div>
 
