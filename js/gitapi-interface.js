@@ -9,19 +9,19 @@ var displayFunction = function(name) {
 $(document).ready(function() {
   var currentrepositoryObject = new  repository();
   console.log('ready');
-  $('#what').click(function(event) {
+  $('#search').click(function(event) {
     event.preventDefault();
     console.log('clicked');
-    var name = $('#yeah').val();
+    var name = $('#text').val();
     $('#location').val("");
     currentrepositoryObject.getrepository(name, displayFunction);
   });
   var currentfindthemObject = new findthem();
   console.log('nice');
-  $('#what').click(function(event) {
+  $('#search').click(function(event) {
     event.preventDefault();
     console.log('clicked');
-    var repos = $('#yeah').var();
+    var repos = $('#text').var();
     $('#location').val("");
     currentfindthemObject.getfindthem(repos, displayFunction);
   });
