@@ -1,39 +1,50 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-exports.apiKey = "0ee7b9d251a69cea4bcc7aab9042ca4c90a124f2";
+exports.apiKey = "bfde5c4141e7e59701cff7ca4c513594764fbac9";
 
 },{}],2:[function(require,module,exports){
 var apiKey = require('./../.env').apiKey;
 
-repository = function() {
+function Github() {
+}
 
-};
+Github.prototype.getUser = function(username, displayFunction) {
+  var info = [];
+  var repoInfo = [];
 
-findthem = function(){
+  $.get('https://api.github.com/users/' + username + '?access_token=' + apiKey).then(function(response) {
 
-};
+      var user = response.login;
+      var name = response.name;
+      var location = response.location;
+      var image = response.avatar_url;
+      var following = response.following;
+      var followers = response.followers;
+      var numRepos = response.public_repos;
+      info.push(user, name, location, image, following, followers, numRepos);
 
-repository.prototype.getrepository = function(name,displayFunction){
-  console.log(name);
-  $.get('https://api.github.com/users/' + name + '?access_token=' + apiKey).then(function(response){
-    displayFunction(response.name);
-    console.log(response);
-  }).fail(function(error) {
-    console.log('error');
+
+    $.get('https://api.github.com/users/' + username + '/repos?access_token=' + apiKey).then(function(result) {
+      var repos = result;
+      repos.forEach(function(repo) {
+        var repoName = repo.name;
+        var description = repo.description;
+        var language = repo.language;
+        var createdAt = repo.created_at;
+        var updatedAt = repo.updated_at;
+        var countFork = repo.forks_count;
+        repoInfo.push([repoName, description, language, createdAt, updatedAt, countFork]);
+      });
+      displayFunction(info, repoInfo);
+    });
+  }).fail(function(error){
+    $('#user-not-found').empty();
+    $('#user-info').empty();
+    $('#user-repos').empty();
+    $('#user-not-foundor').append("Github user can not be found" );
   });
 };
 
-findthem.prototype.getfindthem = function(repos,displayFunction){
-  console.log(repos);
-  $.get('https://api.github.com/users/' + repos + '/repos/?access_token=' + apiKey).then(function(response){
-    displayFunction(response.repos);
-    console.log(response);
-  }).fail(function(error) {
-    console.log('error');
-  });
-};
-
-exports.repositoryModule = repository;
-exports.findthemModule = findthem;
+exports.githubModule = Github;
 
 },{"./../.env":1}],3:[function(require,module,exports){
 var Github = require('./../js/gitapi.js').githubModule;
