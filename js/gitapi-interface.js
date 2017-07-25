@@ -7,22 +7,10 @@ var displayFunction = function(name) {
 
 
 $(document).ready(function() {
-  var currentrepositoryObject = new  repository();
-  console.log('ready');
-  $('#search').click(function(event) {
+  var newGithub = new Github();
+  $('#form').submit(function(event) {
     event.preventDefault();
-    console.log('clicked');
-    var name = $('#text').val();
-    $('#location').val("");
-    currentrepositoryObject.getrepository(name, displayFunction);
-  });
-  var currentfindthemObject = new findthem();
-  console.log('nice');
-  $('#search').click(function(event) {
-    event.preventDefault();
-    console.log('clicked');
-    var repos = $('#text').var();
-    $('#location').val("");
-    currentfindthemObject.getfindthem(repos, displayFunction);
+    var username = $('#username').val();
+    newGithub.getUser(username, displayUser);
   });
 });
